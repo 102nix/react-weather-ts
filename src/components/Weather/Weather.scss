@@ -1,0 +1,104 @@
+.container{
+  margin-top: 0px;
+  padding: 20px 50px;
+  overflow: hidden;
+}
+.date-time{
+  display: flex;
+  flex-direction: column;
+}
+.today-weather-all{
+  padding-top: 15%;
+}
+.today{
+  font-size: 31px;
+}
+.weather-info{
+  justify-content: center;
+  align-items: center;
+}
+.temp-val{
+  font-size: 91px;
+}
+.btn-link{
+  color: #000;
+}
+img{
+  width: 10%;
+  height: 5%;
+}
+input, select, select option{background-color: rgb(228, 228, 222) !important}
+.weather-forecast{
+  flex-direction: column;
+  margin-top: 5%;
+}
+.one-day{
+  font-size: 13px;
+  padding: 10px 0;
+  flex-direction: column;
+  margin-top: 15px;
+  border-radius: 3px;
+  box-shadow: 1px 3px 5px rgb(95, 94, 94);
+}
+.title-no-geo{
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+}
+.no-geo-for-city{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+}
+.select-city-no-geo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.note-select-city{
+  margin-bottom: 10px;
+}
+.write-city-no-geo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+select, input, .btn{
+  transform: scale(1);
+  transition: transform .9s;
+  &:hover{
+    position: relative;
+    z-index: 1000;
+    transform:scale(1.15);
+    transition: transform .9s;
+  }
+}
+@media(max-width: 768px){
+  .today-weather-all {
+    padding-top: 5%;
+}
+}
+@media(max-width:424px){
+  .btn{
+    margin: 11px 0;
+  }
+}
+@media(max-width:375px){
+  .btn{
+    margin: 11px 0;
+  }
+  .title-no-geo, .no-geo-for-city, .select-city-no-geo
+  .note-select-city, .write-city-no-geo{
+    font-size: 14px;
+  }  
+  .form-control{
+    font-size: 12px;
+  }  
+}
+
+
