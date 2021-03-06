@@ -1,23 +1,22 @@
-import React, { useEffect } from 'react';
-import './Weather.scss';
+import React, { useEffect } from 'react'
+import './Weather.scss'
 import { connect } from 'react-redux'
-import { onGetWeather, onGetWeatherName, onGetWeatherGeo } from '../../redux/weatherReducer';
-import { onGetForecastName } from '../../redux/forecast5Reducer';
+import { onGetWeather, onGetWeatherName, onGetWeatherGeo } from '../../redux/weatherAC'
+import { onGetForecastName } from '../../redux/forecast5ReducerAC'
 //Components:
-import { DateTime } from '../DateTime/DateTime';
-import { SelectCity } from '../SelectCity/SelectCity';
-import { WeatherForecast } from '../WeatherForecast/WeatherForecast';
-import { InputCity } from '../InputCity/InputCity';
+import { DateTime } from '../DateTime/DateTime'
+import { SelectCity } from '../SelectCity/SelectCity'
+import { WeatherForecast } from '../WeatherForecast/WeatherForecast'
+import { InputCity } from '../InputCity/InputCity'
 import { TodayWeather } from '../TodayWeather/TodayWeather'
 //types:
-import { InitialStateType, WeatherDispatchProps, InitialStateTypeRange } from '../../types/componentsTypes'
+import { WeatherDispatchProps,  } from '../../types/componentsTypes'
 import { AppStateType } from '../../redux/store'
+import { InitialStateType } from '../../types/ACWeatherTypes'
+import { InitialStateTypeRange } from '../../types/ACforecast5types'
 // небольшой снег; небольшой дождь; туман; пасмурно; переменная облачность
 
-
-type PropsType = InitialStateType & InitialStateTypeRange
-
-const Weather: React.FC<PropsType & WeatherDispatchProps> = props => {
+const Weather: React.FC<InitialStateType & InitialStateTypeRange & WeatherDispatchProps> = props => {
 
   useEffect(() => {
     handlerGeo()
@@ -96,7 +95,7 @@ const Weather: React.FC<PropsType & WeatherDispatchProps> = props => {
     </div>
   )
 }
-let mapStateToProps = (state: AppStateType): PropsType => {
+const mapStateToProps = (state: AppStateType): InitialStateType & InitialStateTypeRange => {
   return {
     cityName: state.weatherReducer.cityName,
     countryName: state.weatherReducer.countryName,

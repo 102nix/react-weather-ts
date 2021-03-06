@@ -1,23 +1,4 @@
-export type InitialStateType = {
-  cityName: null | string
-  countryName: null | string
-  temperatureC: null | number
-  windSpeedK: null | number
-  weatherFirst: null | string
-  weatherSecond: null | string
-  humidity: null | number
-}
-export type RangeDaysWeatherType = {
-  temperatureC: undefined | number
-  date: undefined | string
-  time: undefined | string
-  wind: undefined | number
-  weather: undefined | string
-}
-export type InitialStateTypeRange = {
-  cityNameRange: null | string
-  weatherRange: null | Array<RangeDaysWeatherType>
-}
+import { RangeDaysWeatherType } from "./ACforecast5types"
 
 export type WeatherDispatchProps = {
   onGetWeather(): void
