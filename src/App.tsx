@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import Weather from './components/Weather/Weather';
-import autumn from './imgs/autumn0.jpg';
+import React, { useState, useEffect } from 'react'
+import './App.css'
+import Weather from './components/Weather/Weather'
+import autumn from './imgs/autumn0.jpg'
 import winter from './imgs/winter1.jpg'
-import spring from './imgs/spring.jpg'
+import spring from './imgs/spring1.jpg'
 
 function App() {
 
