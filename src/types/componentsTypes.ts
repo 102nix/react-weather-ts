@@ -1,10 +1,11 @@
-import { RangeDaysWeatherType } from "./ACforecast5types"
+import { RangeDaysWeatherType } from "./ACWeatherTypes"
 
 export type WeatherDispatchProps = {
   onGetWeather(): void
   onGetWeatherName(name: string): void
   onGetWeatherGeo(lat: number, lot: number): void
   onGetForecastName(city: string): void
+  onGetHoursWeather(name: string): void
 }
 
 export type DataTimeContainerPropsType = {
@@ -20,7 +21,7 @@ export type TodayWeatherContainerPropsType = {
 }
 
 export type WeatherForecastContainerPropsType = {
-  weatherRange: null | Array<RangeDaysWeatherType>
+  weatherRange: null | Array<RangeDaysWeatherType> | undefined
 }
 
 export type OnGetWeatherNameContainerMethodsType = {

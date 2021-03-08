@@ -7,7 +7,9 @@ let initialState: InitialStateType = {
   windSpeedK: null,
   weatherFirst: null,
   weatherSecond: null,
-  humidity: null
+  humidity: null,
+  cityNameRange: null,
+  weatherRange: null
 }
 
 const weatherReducer = (state = initialState, action: ActionsType) => {
@@ -22,6 +24,12 @@ const weatherReducer = (state = initialState, action: ActionsType) => {
         weatherFirst: action.objectWeather.weatherFirst,
         weatherSecond: action.objectWeather.weatherSecond,
         humidity: action.objectWeather.humidity
+      }
+    case weatherReducerConst.GET_WEATHER_RANGE:
+      return {
+        ...state,
+        cityNameRange: action.cityNameRange,
+        weatherRange: action.weatherRange
       }
     default: return state
   }

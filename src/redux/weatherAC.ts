@@ -1,8 +1,12 @@
 import { WeatherAPI } from '../api/api'
-import { InitialStateType, SetWeatherType, ThunkType, weatherReducerConst } from "../types/ACWeatherTypes"
+import { InitialStateType, RangeDaysWeatherType, SetWeatherRangeType, SetWeatherType, ThunkType, ThunkTypeRange, weatherReducerConst } from "../types/ACWeatherTypes"
+import { getDatesFromFiveDays } from './getDatesFromFiveDays'
 
 export const setWeather = (objectWeather: InitialStateType): SetWeatherType => ({type: weatherReducerConst.GET_WEATHER, objectWeather})
-
+export const setWeatherRange = 
+  (cityNameRange: string, weatherRange: Array<RangeDaysWeatherType>): 
+    SetWeatherRangeType => ({type: weatherReducerConst.GET_WEATHER_RANGE, cityNameRange, weatherRange})
+    
 function prepareDataForDispatch (response: any) {
   const objectWeather: InitialStateType = {
     cityName: response.data.name,
@@ -38,6 +42,25 @@ export const onGetWeatherGeo = (lat: number, lon: number): ThunkType => async (d
   try {
     const response = await WeatherAPI.getWeatherGeo(lat, lon)
     dispatch(setWeather(prepareDataForDispatch(response)))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const onGetForecastName = (name: string): ThunkTypeRange => async (dispatch) => {
+  try {
+    const response = await WeatherAPI.getForecastName(name)
+    console.log(response.data)
+    dispatch(setWeatherRange(name, getDatesFromFiveDays(response.data.list)))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export const onGetHoursWeather = (name:string): ThunkTypeRange => async (dispatch) => {
+  try {
+    const response = await WeatherAPI.getHorsWeather(name)
+    console.log(response)
   } catch (error) {
     console.log(error)
   }

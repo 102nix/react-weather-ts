@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import './Weather.scss'
 import { connect } from 'react-redux'
-import { onGetWeather, onGetWeatherName, onGetWeatherGeo } from '../../redux/weatherAC'
-import { onGetForecastName } from '../../redux/forecast5ReducerAC'
+import { onGetWeather, onGetWeatherName, onGetWeatherGeo, onGetForecastName, onGetHoursWeather } from '../../redux/weatherAC'
 //Components:
 import { DateTime } from '../DateTime/DateTime'
 import { SelectCity } from '../SelectCity/SelectCity'
@@ -10,13 +9,12 @@ import { WeatherForecast } from '../WeatherForecast/WeatherForecast'
 import { InputCity } from '../InputCity/InputCity'
 import { TodayWeather } from '../TodayWeather/TodayWeather'
 //types:
-import { WeatherDispatchProps,  } from '../../types/componentsTypes'
+import { WeatherDispatchProps } from '../../types/componentsTypes'
 import { AppStateType } from '../../redux/store'
 import { InitialStateType } from '../../types/ACWeatherTypes'
-import { InitialStateTypeRange } from '../../types/ACforecast5types'
 // небольшой снег; небольшой дождь; туман; пасмурно; переменная облачность
 
-const Weather: React.FC<InitialStateType & InitialStateTypeRange & WeatherDispatchProps> = props => {
+const Weather: React.FC<InitialStateType & WeatherDispatchProps> = props => {
 
   useEffect(() => {
     handlerGeo()
@@ -60,7 +58,7 @@ const Weather: React.FC<InitialStateType & InitialStateTypeRange & WeatherDispat
               />
             </div>
             <div className="col-12 col-lg-6 weather-forecast">
-              <WeatherForecast weatherRange={props.weatherRange} />
+              <WeatherForecast weatherRange={props.weatherRange}/>
             </div>
           </div>
           <div className="row mt-5">
@@ -95,7 +93,7 @@ const Weather: React.FC<InitialStateType & InitialStateTypeRange & WeatherDispat
     </div>
   )
 }
-const mapStateToProps = (state: AppStateType): InitialStateType & InitialStateTypeRange => {
+const mapStateToProps = (state: AppStateType): InitialStateType => {
   return {
     cityName: state.weatherReducer.cityName,
     countryName: state.weatherReducer.countryName,
@@ -104,9 +102,9 @@ const mapStateToProps = (state: AppStateType): InitialStateType & InitialStateTy
     weatherFirst: state.weatherReducer.weatherFirst,
     weatherSecond: state.weatherReducer.weatherSecond,
     humidity: state.weatherReducer.humidity,
-    cityNameRange: state.forecast5Reducer.cityNameRange,
-    weatherRange: state.forecast5Reducer.weatherRange,
+    cityNameRange: state.weatherReducer.cityNameRange,
+    weatherRange: state.weatherReducer.weatherRange,
   }
 }
-const connector = connect(mapStateToProps, { onGetWeather, onGetWeatherName, onGetWeatherGeo, onGetForecastName })
+const connector = connect(mapStateToProps, { onGetWeather, onGetWeatherName, onGetWeatherGeo, onGetForecastName, onGetHoursWeather })
 export default connector(Weather)

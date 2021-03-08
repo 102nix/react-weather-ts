@@ -1,9 +1,9 @@
 import { ThunkAction } from 'redux-thunk'
 import { AppStateType } from '../redux/store'
-import { forecast5Const, RangeDaysWeatherType } from './ACforecast5types'
 
 export enum weatherReducerConst{
-  GET_WEATHER = 'GET_WEATHER'
+  GET_WEATHER = 'GET_WEATHER',
+  GET_WEATHER_RANGE = 'GET_WEATHER_RANGE'
 }
 export type InitialStateType = {
   cityName: null | string
@@ -13,9 +13,11 @@ export type InitialStateType = {
   weatherFirst: null | string
   weatherSecond: null | string
   humidity: null | number
+  cityNameRange?: null | string
+  weatherRange?: null | Array<RangeDaysWeatherType>
 }
 
-export type ActionsType = SetWeatherType 
+export type ActionsType = SetWeatherType | SetWeatherRangeType
 
 export type SetWeatherType = {
   type: weatherReducerConst.GET_WEATHER
@@ -23,9 +25,17 @@ export type SetWeatherType = {
 }
 
 export type SetWeatherRangeType = {
-  type: forecast5Const.GET_WEATHER_RANGE
-  city: string
+  type: weatherReducerConst.GET_WEATHER_RANGE
+  cityNameRange: string
   weatherRange: Array<RangeDaysWeatherType>
+}
+
+export type RangeDaysWeatherType = {
+  temperatureC: undefined | number
+  date: undefined | string
+  time: undefined | string
+  wind: undefined | number
+  weather: undefined | string
 }
 
 export type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>

@@ -1,12 +1,6 @@
-import { WeatherAPI } from '../api/api'
-import { forecast5Const, RangeDaysWeatherType } from "../types/ACforecast5types"
-import { SetWeatherRangeType, ThunkTypeRange } from "../types/ACWeatherTypes"
+import { RangeDaysWeatherType } from "../types/ACWeatherTypes"
 
-export const setWeatherRange = 
-  (city: string, weatherRange: Array<RangeDaysWeatherType>): 
-    SetWeatherRangeType => ({type: forecast5Const.GET_WEATHER_RANGE, city, weatherRange})
-
-function getDatesFromFiveDays (list:any): Array<RangeDaysWeatherType> {
+export function getDatesFromFiveDays (list:any): Array<RangeDaysWeatherType> {
  
   const arrayDaysWeather: Array<RangeDaysWeatherType> = [
     {
@@ -46,13 +40,4 @@ function getDatesFromFiveDays (list:any): Array<RangeDaysWeatherType> {
     }
   ]
   return(arrayDaysWeather)
-}
-
-export const onGetForecastName = (name: string): ThunkTypeRange => async (dispatch) => {
-  try {
-    const response = await WeatherAPI.getForecastName(name)
-    dispatch(setWeatherRange(name, getDatesFromFiveDays(response.data.list)))
-  } catch (error) {
-    console.log(error)
-  }
 }
